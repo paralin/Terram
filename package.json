@@ -1,7 +1,7 @@
 {
-  "name": "racetrak",
+  "name": "terram",
   "version": "0.0.0",
-  "description": "An app to track drone races.",
+  "description": "A MMO web game.",
   "author": "Christian Stewart <christian@paral.in>",
   "license": "UNLICENSED",
   "scripts": {
@@ -131,10 +131,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FuseRobotics/racetrak.git"
+    "url": "https://github.com/FuseRobotics/terram.git"
   },
   "bugs": {
-    "url": "https://github.com/fuserobotics/racetrak/issues"
+    "url": "https://github.com/fuserobotics/terram/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
