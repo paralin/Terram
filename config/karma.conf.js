@@ -79,6 +79,10 @@ module.exports = function(config) {
       ChromeTravisCi: {
         base: 'Chrome',
         flags: ['--no-sandbox']
+      },
+      ChromeJenkins: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
       }
     },
 
@@ -89,8 +93,11 @@ module.exports = function(config) {
     singleRun: true
   };
 
-  if (process.env.TRAVIS){
+  if (process.env.TRAVIS) {
     configuration.browsers = ['ChromeTravisCi'];
+  }
+  if (process.env.JENKINS) {
+    configuration.browsers = ['ChromeJenkins'];
   }
 
   config.set(configuration);
