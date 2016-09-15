@@ -11,7 +11,9 @@ node {
     sh '. /root/.bashrc && npm install'
   }
 
-  stage ("test") {
-    sh '. /root/.bashrc && npm run ci'
+  wrap([$class: 'Xvfb']) {
+    stage ("test") {
+      sh '. /root/.bashrc && npm run ci'
+    }
   }
 }
