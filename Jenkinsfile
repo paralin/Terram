@@ -1,6 +1,6 @@
 node {
   stage ("node v6") {
-    sh '. /root/.bashrc && nvm install 6'
+    sh 'set +x && . /root/.bashrc && nvm install 6'
   }
 
   stage ("scm") {
