@@ -7,13 +7,15 @@ node {
     checkout scm
   }
 
-  stage ("install") {
-    sh '. /root/.bashrc && npm install'
-  }
+  wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+    stage ("install") {
+      sh '. /root/.bashrc && npm install'
+    }
 
-  wrap([$class: 'Xvfb']) {
-    stage ("test") {
-      sh '. /root/.bashrc && npm run ci'
+    wrap([$class: 'Xvfb']) {
+      stage ("test") {
+        sh '. /root/.bashrc && npm run ci'
+      }
     }
   }
 }
