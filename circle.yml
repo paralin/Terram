@@ -1,0 +1,17 @@
+machine:
+  timezone:
+    America/Indianapolis
+  node:
+    version: 6
+  environment:
+    CI: ci
+    CIRCLE: ci
+dependencies:
+  pre:
+    - export CHROME_BIN=chromium-browser
+    - export DISPLAY=:99.0
+    - sleep 3
+    - npm i -g npm@^3
+test:
+  override:
+    - npm run ci
