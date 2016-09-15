@@ -9,7 +9,7 @@ node {
 
   wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
     stage ("install") {
-      sh '. /root/.bashrc && npm install'
+      sh '. /root/.bashrc && enable-npm-proxy && npm install'
     }
 
     wrap([$class: 'Xvfb']) {
