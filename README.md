@@ -8,3 +8,11 @@ Basic idea:
  - Infinite X axis, bedrock on `y = 0`, infinite Y axis (space).
  - Server-sided procedural generation of world.
  - Ability to spawn on friends (and teleport to friends?) after friend request / etc.
+
+Developing
+==========
+
+To get started:
+
+ - `npm install`
+ - `npm run server:dev:hmr`
