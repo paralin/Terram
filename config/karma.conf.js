@@ -73,7 +73,6 @@ module.exports = function(config) {
      */
     browsers: [
       'Chrome',
-      'Chromium',
     ],
 
     customLaunchers: {
@@ -94,7 +93,7 @@ module.exports = function(config) {
     singleRun: true
   };
 
-  if (process.env.TRAVIS) {
+  if (process.env.TRAVIS || process.env.CIRCLECI) {
     configuration.browsers = ['ChromeTravisCi'];
   }
   if (process.env.JENKINS) {
