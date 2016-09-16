@@ -8,6 +8,7 @@ node {
   }
 
   env.CACHE_CONTEXT='terram-app'
+  env.CHROMIUM_BIN='/usr/bin/chromium'
   wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
     stage ("cache-download") {
       sh '. ~/.bashrc && ./scripts/init_cache.bash'
