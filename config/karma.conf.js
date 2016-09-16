@@ -72,7 +72,8 @@ module.exports = function(config) {
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
     browsers: [
-      'Chrome'
+      'Chrome',
+      'Chromium',
     ],
 
     customLaunchers: {
@@ -81,7 +82,7 @@ module.exports = function(config) {
         flags: ['--no-sandbox']
       },
       ChromeJenkins: {
-        base: 'Chrome',
+        base: 'Chromium',
         flags: ['--no-sandbox']
       }
     },

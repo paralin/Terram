@@ -22,7 +22,7 @@ echo "Re-packaging cache..."
 if [ -f build-cache.tar.gz ]; then
   rm build-cache.tar.gz
 fi
-tar -czvf build-cache.tar.gz ./node_modules
+tar -czf build-cache.tar.gz ./node_modules
 
 echo "Uploading cache..."
 upload-cache $CACHE_CONTEXT
