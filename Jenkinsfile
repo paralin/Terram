@@ -7,9 +7,18 @@ node {
     checkout scm
   }
 
+  env.CACHE_CONTEXT='terram-app'
   wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+    stage ("cache-download") {
+      sh '. ~/.bashrc && ./scripts/init_cache.bash'
+    }
+
     stage ("install") {
-      sh '. /root/.bashrc && enable-npm-proxy && npm install'
+      sh '. /root/.bashrc && enable-npm-proxy && npm install && npm prune'
+    }
+
+    stage ("cache-upload") {
+      sh '. ~/.bashrc && ./scripts/finalize_cache.bash'
     }
 
     wrap([$class: 'Xvfb']) {
