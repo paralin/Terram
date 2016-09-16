@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = function(config) {
   var testWebpackConfig = require('./webpack.test.js')({env: 'test'});
 
@@ -78,11 +80,12 @@ module.exports = function(config) {
     customLaunchers: {
       ChromeTravisCi: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
+        flags: ['--no-sandbox'],
       },
-      ChromeJenkins: {
+      ChromiumJenkins: {
         base: 'Chromium',
-        flags: ['--no-sandbox']
+        flags: ['--no-sandbox', '--disable-web-security'],
+        chromeDataDir: path.resolve(__dirname, '../.chrome-home'),
       }
     },
 
@@ -97,7 +100,8 @@ module.exports = function(config) {
     configuration.browsers = ['ChromeTravisCi'];
   }
   if (process.env.JENKINS) {
-    configuration.browsers = ['ChromeJenkins'];
+    console.log("Using chromium home dir: " + configuration.customLaunchers.ChromiumJenkins.chromeDataDir);
+    configuration.browsers = ['ChromiumJenkins'];
   }
 
   config.set(configuration);

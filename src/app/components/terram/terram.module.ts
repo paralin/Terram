@@ -9,39 +9,27 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
-// App is our top level component
-import { App } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InteralStateType } from './app.service';
-import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
-import { XLarge } from './home/x-large';
+import { ROUTES } from './terram.routes';
+
+import { Terram } from './terram.component';
+import { HOME_DECLARATIONS } from '../../pages/home';
+import { NoContent } from '../../pages/no-content';
 
 // Application wide providers
 const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
-  AppState
 ];
 
 type StoreType = {
-  state: InteralStateType,
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
 
-/**
- * `AppModule` is the main entry point into Angular2's bootstraping process
- */
 @NgModule({
-  bootstrap: [ App ],
+  bootstrap: [ Terram ],
   declarations: [
-    App,
-    About,
-    Home,
+    Terram,
+    ...HOME_DECLARATIONS,
     NoContent,
-    XLarge
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -54,14 +42,12 @@ type StoreType = {
     APP_PROVIDERS
   ]
 })
-export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) {}
+export class TerramModule {
+  constructor(public appRef: ApplicationRef) {}
 
   hmrOnInit(store: StoreType) {
-    if (!store || !store.state) return;
-    console.log('HMR store', JSON.stringify(store, null, 2));
-    // set state
-    this.appState._state = store.state;
+    if (!store) return;
+    // console.log('HMR store', JSON.stringify(store, null, 2));
     // set input values
     if ('restoreInputValues' in store) {
       let restoreInputValues = store.restoreInputValues;
@@ -69,15 +55,11 @@ export class AppModule {
     }
 
     this.appRef.tick();
-    delete store.state;
     delete store.restoreInputValues;
   }
 
   hmrOnDestroy(store: StoreType) {
     const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // save state
-    const state = this.appState._state;
-    store.state = state;
     // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // save input values
@@ -91,6 +73,5 @@ export class AppModule {
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
-
 }
 

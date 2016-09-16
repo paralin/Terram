@@ -1,18 +1,15 @@
 import {
-  inject,
   TestBed
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { App } from './app.component';
-import { AppState } from './app.service';
+import { Terram } from './terram.component';
 
-describe('App', () => {
+describe('terram', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      AppState,
-      App
+      Terram,
     ]}));
 
     /*
@@ -20,5 +17,4 @@ describe('App', () => {
     expect(app.url).toEqual('something');
   }));
   */
-
 });
