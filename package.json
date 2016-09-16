@@ -9,7 +9,7 @@
     "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
     "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",
-    "ci": "npm run lint && npm test && ./scripts/run_e2e.bash",
+    "ci": "npm run lint && npm test",
     "clean:dist": "npm run rimraf -- dist",
     "clean:install": "npm set progress=false && npm install",
     "clean:start": "npm start",

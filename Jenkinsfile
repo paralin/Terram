@@ -26,6 +26,10 @@ node {
       stage ("test") {
         sh '. /root/.bashrc && npm run ci'
       }
+
+      stage ("e2e") {
+        sh '. /root/.bashrc && ./scripts/run_e2e.bash'
+      }
     }
   }
 }
