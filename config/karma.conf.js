@@ -72,7 +72,7 @@ module.exports = function(config) {
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
     browsers: [
-      'Chrome'
+      'Chrome',
     ],
 
     customLaunchers: {
@@ -81,7 +81,7 @@ module.exports = function(config) {
         flags: ['--no-sandbox']
       },
       ChromeJenkins: {
-        base: 'Chrome',
+        base: 'Chromium',
         flags: ['--no-sandbox']
       }
     },
@@ -93,7 +93,7 @@ module.exports = function(config) {
     singleRun: true
   };
 
-  if (process.env.TRAVIS) {
+  if (process.env.TRAVIS || process.env.CIRCLECI) {
     configuration.browsers = ['ChromeTravisCi'];
   }
   if (process.env.JENKINS) {
