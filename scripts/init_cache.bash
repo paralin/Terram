@@ -17,4 +17,4 @@ else
 fi
 
 echo "Recording hashes..."
-record-cache ./node_modules
+record-cache ./node_modules/

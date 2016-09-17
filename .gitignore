@@ -57,3 +57,5 @@ npm-debug.log
 # IDE #
 .idea/
 *.swp
+
+cache_hashes.txt

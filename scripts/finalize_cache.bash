@@ -11,10 +11,8 @@ if [ ! -f ./cache_hashes.txt ]; then
   exit 1
 fi
 
-CHANGED_COUNT=$(compare-cache ./node_modules | wc -l)
-echo "Detected $CHANGED_COUNT changed files."
-if (( $CHANGED_COUNT == 0 )); then
-  echo "No changes, I'm done."
+if compare-cache ./node_modules | wc -l; then
+  echo "No changes, continuing without uploading cache."
   exit 0
 fi
 
