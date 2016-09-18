@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "=== E2E ==="
+echo "DISPLAY: $DISPLAY"
 echo "Starting server..."
 npm run server:dev:hmr &
 SERVER_PID=$!
