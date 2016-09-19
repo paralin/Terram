@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
+import { EngineModule } from '../../engine';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -13,6 +15,7 @@ import { ROUTES } from './terram.routes';
 
 import { Terram } from './terram.component';
 import { HOME_DECLARATIONS } from '../../pages/home';
+import { GAME_PAGE_DECLARATIONS } from '../../pages/game';
 import { NoContent } from '../../pages/no-content';
 
 // Application wide providers
@@ -29,9 +32,11 @@ type StoreType = {
   declarations: [
     Terram,
     ...HOME_DECLARATIONS,
+    ...GAME_PAGE_DECLARATIONS,
     NoContent,
   ],
   imports: [ // import Angular's modules
+    EngineModule,
     BrowserModule,
     FormsModule,
     HttpModule,

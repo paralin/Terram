@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const helpers = require('./helpers');
+const path = require('path');
 
 /*
  * Webpack Plugins
@@ -171,7 +172,11 @@ module.exports = function(options) {
         {
           test: /\.(jpg|png|gif)$/,
           loader: 'file'
-        }
+        },
+
+        { test: /\.(glsl|frag|vert)$/, loader: 'raw', exclude: /node_modules/ },
+        { test: /\.(glsl|frag|vert)$/, loader: 'glslify', exclude: /node_modules/ },
+        { test: path.resolve(__dirname, 'node_modules', 'pixi.js'), loader: 'ify' },
       ],
 
       postLoaders: [
