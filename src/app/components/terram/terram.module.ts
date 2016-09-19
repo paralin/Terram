@@ -8,6 +8,11 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { EngineModule } from '../../engine';
 
 /*
+ * Material Design imports
+ */
+import { MaterialModule } from '../../modules/material';
+
+/*
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
@@ -40,7 +45,8 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    MaterialModule,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
