@@ -1,4 +1,5 @@
 const helpers = require('./helpers');
+const path = require('path');
 
 /**
  * Webpack Plugins
@@ -141,7 +142,11 @@ module.exports = function(options) {
          *
          * See: https://github.com/webpack/raw-loader
          */
-        { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
+        { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
+
+        { test: /\.(glsl|frag|vert)$/, loader: 'raw', exclude: /node_modules/ },
+        { test: /\.(glsl|frag|vert)$/, loader: 'glslify', exclude: /node_modules/ },
+        { test: path.resolve(__dirname, 'node_modules', 'pixi.js'), loader: 'ify' },
 
       ],
 

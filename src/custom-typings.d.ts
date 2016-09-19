@@ -121,3 +121,7 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+declare module 'pixi.js/bin/pixi.js' {
+  export = PIXI;
+}
