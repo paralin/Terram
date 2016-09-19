@@ -19,11 +19,13 @@ import '@angularclass/hmr';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+// Game engine
+import 'pixi.js/bin/pixi.js';
+
+/*
 if ('production' === ENV) {
   // Production
-
-
 } else {
   // Development
-
 }
+*/

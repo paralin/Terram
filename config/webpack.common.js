@@ -11,6 +11,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 /*
  * Webpack Constants
@@ -203,6 +204,12 @@ module.exports = function(options) {
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
+
+      // https://github.com/AngularClass/angular2-webpack-starter/issues/993
+      new ContextReplacementPlugin(
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        __dirname
+      ),
 
       /*
        * Plugin: ForkCheckerPlugin
