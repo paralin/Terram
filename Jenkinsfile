@@ -15,24 +15,46 @@ node {
   env.CACHE_CONTEXT='terram-app'
   wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
     stage ("cache-download") {
-      sh '. ~/.bashrc && ./scripts/init_cache.bash'
+      sh '''
+        #!/bin/bash
+        source ./scripts/jenkins_env.bash
+        ./scripts/init_cache.bash
+      '''
     }
 
     stage ("install") {
-      sh '. ~/.bashrc && enable-npm-proxy && npm install && npm prune'
+      sh '''
+        #!/bin/bash
+        source ./scripts/jenkins_env.bash
+        enable-npm-proxy
+        npm install
+        npm prune
+      '''
     }
 
     stage ("cache-upload") {
-      sh '. ~/.bashrc && ./scripts/finalize_cache.bash'
+      sh '''
+        #!/bin/bash
+        source ./scripts/jenkins_env.bash
+        ./scripts/finalize_cache.bash
+      '''
     }
 
     wrap([$class: 'Xvfb']) {
       stage ("test") {
-        sh '. /root/.bashrc && npm run ci'
+        sh '''
+          #!/bin/bash
+          source ./scripts/jenkins_env.bash
+          npm run ci
+        '''
       }
 
       stage ("e2e") {
-        sh '. /root/.bashrc && ./scripts/run_e2e.bash'
+        sh '''
+          #!/bin/bash
+          source ./scripts/jenkins_env.bash
+          ./scripts/run_e2e.bash
+        '''
       }
     }
   }
