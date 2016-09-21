@@ -28,6 +28,7 @@ node {
         source ./scripts/jenkins_env.bash
         enable-npm-proxy
         npm install
+        npm run pree2e
         npm prune
       '''
     }
