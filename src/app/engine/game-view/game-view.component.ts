@@ -1,5 +1,8 @@
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Input } from '@angular/core';
 import * as PIXI from 'pixi.js/bin/pixi.js';
+
+import { Game } from '../game';
+import { Logger } from 'angular2-logger/core';
 
 @Component({
   selector: 'game-view',
@@ -9,18 +12,21 @@ import * as PIXI from 'pixi.js/bin/pixi.js';
   ],
 })
 export class GameView implements OnDestroy, OnInit {
+  @Input('game') public game: Game;
   private renderer: PIXI.SystemRenderer;
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private log: Logger) {}
 
   public ngOnInit() {
     this.initEngine();
     this.initResizeHandler();
+    this.initGame();
   }
 
   public ngOnDestroy() {
-    this.renderer.destroy(true);
     this.destroyResizeHandler();
+    this.destroyGame();
+    this.renderer.destroy(true);
   }
 
   private initEngine() {
@@ -51,5 +57,22 @@ export class GameView implements OnDestroy, OnInit {
   private resizeView() {
     let { width, height } = this.viewSize;
     this.renderer.resize(width, height);
+  }
+
+  private initGame() {
+    if (!this.game) {
+      this.log.error('No game specified to game-view.');
+      return;
+    }
+
+    this.game.initWithRenderer(this.renderer);
+  }
+
+  private destroyGame() {
+    if (!this.game) {
+      return;
+    }
+
+    this.game.destroy();
   }
 }

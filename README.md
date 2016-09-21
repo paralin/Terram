@@ -15,4 +15,7 @@ Developing
 To get started:
 
  - `npm install`
+ - `npm run setup:dev`
  - `npm run server:dev:hmr`
+
+The `npm run setup:dev` script will get you up to speed with the Go dependencies.
