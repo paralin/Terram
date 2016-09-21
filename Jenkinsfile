@@ -1,6 +1,11 @@
 node {
   stage ("node v6") {
-    sh '. /root/.bashrc && set +x && nvm install 6'
+    sh '''
+      #!/bin/bash
+      set +x
+      source ~/.nvm/nvm.sh
+      nvm install 6
+    '''
   }
 
   stage ("scm") {
@@ -14,7 +19,7 @@ node {
     }
 
     stage ("install") {
-      sh '. /root/.bashrc && enable-npm-proxy && npm install && npm prune'
+      sh '. ~/.bashrc && enable-npm-proxy && npm install && npm prune'
     }
 
     stage ("cache-upload") {
