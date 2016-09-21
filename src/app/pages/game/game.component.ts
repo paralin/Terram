@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TerramGame } from '../../game/terram';
 
 @Component({
   selector: 'game-page',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   templateUrl: './game.template.html'
 })
 export class GamePage {
+  constructor(private game: TerramGame) {
+  }
 }
 
 export const GAME_PAGE_DECLARATIONS = [
