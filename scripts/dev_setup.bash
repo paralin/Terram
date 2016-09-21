@@ -1,6 +1,12 @@
 #!/bin/bash
 WIKI_ROOT=https://github.com/FuseRobotics/Terram/wiki
 
+echo "Checking your npm..."
+if ! npm -v; then
+  echo "NPM is not set up properly."
+  exit 1
+fi
+
 echo "Checking your go..."
 if ! go version; then
   echo "You need Go installed. Please do so now, preferably 1.7 or greater."
@@ -52,10 +58,33 @@ fi
 
 echo "Installing dependencies..."
 pushd $GOTERRAM_PATH
-if ! glide install; then
-  echo "Unable to install dependencies with glide install."
-  exit 1
+if [ -n "$USE_GLIDE_FOR_DEPS" ]; then
+  if ! glide install; then
+    echo "Unable to install dependencies with glide install."
+    exit 1
+  fi
+else
+  rm -rf ./vendor || true
+  go get ./...
 fi
 popd
+
+echo "Doing initial goterram js build..."
+pushd $GOTERRAM_PATH
+if ! ./scripts/build_js.bash; then
+  echo "Unable to build js, for some reason."
+  exit 1
+fi
+pushd js
+npm link
+popd
+popd
+
+echo "Linking in goterram..."
+if ! [ -d ./node_modules ]; then
+  npm install
+fi
+rm -rf ./node_modules/@fusebot/goterram || true
+npm link @fusebot/goterram
 
 echo "Done, your goterram dependencies are set up."
