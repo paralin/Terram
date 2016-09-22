@@ -11,10 +11,10 @@ export class Game {
 
   public initWithRenderer(renderer: PIXI.SystemRenderer) {
     this.renderer = renderer;
-    this.init();
+    this.preInit();
   }
 
-  public init() {
+  public preInit() {
     // do nothing, override in subclass
   }
 

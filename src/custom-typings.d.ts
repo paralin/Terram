@@ -42,6 +42,7 @@ import * as _ from 'lodash'
  * You can include your type definitions in this file until you create one for the @types
  *
  */
+/// <reference path="../node_modules/@fusebot/goterram/js/goterram.d.ts" />
 
 // support NodeJS modules without type definitions
 declare module '*';

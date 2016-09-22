@@ -18,9 +18,6 @@ import { MaterialModule } from '../../modules/material';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './terram.routes';
 
-// Game stuff
-import { TerramGame } from '../../game/terram';
-
 import { Terram } from './terram.component';
 import { HOME_DECLARATIONS } from '../../pages/home';
 import { GAME_PAGE_DECLARATIONS } from '../../pages/game';
@@ -54,7 +51,6 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    TerramGame,
   ]
 })
 export class TerramModule {
