@@ -8,10 +8,16 @@ import * as PIXI from 'pixi.js/bin/pixi.js';
  */
 export class Game {
   public renderer: PIXI.SystemRenderer;
+  public stage: PIXI.Container;
+
+  private continueAnimating: boolean;
 
   public initWithRenderer(renderer: PIXI.SystemRenderer) {
     this.renderer = renderer;
+    this.stage = new PIXI.Container();
     this.preInit();
+    this.continueAnimating = true;
+    this.animate(true);
   }
 
   public preInit() {
@@ -20,11 +26,41 @@ export class Game {
 
   // Called by go
   public destroy() {
+    this.continueAnimating = false;
+    this.stage.destroy(true);
     this.renderer = null;
   }
 
   // Called by ts
   public destroyGame() {
     //
+  }
+
+  // Override in subclass
+  public preRender() {
+    //
+  }
+
+  // Override in subclass
+  public postRender() {
+    //
+  }
+
+  private animate(firstLoop: boolean = false) {
+    if (!this.continueAnimating) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      this.animate();
+    });
+
+    if (firstLoop) {
+      return;
+    }
+
+    this.preRender();
+    this.renderer.render(this.stage);
+    this.postRender();
   }
 }
