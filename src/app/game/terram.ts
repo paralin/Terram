@@ -21,7 +21,7 @@ export class TerramGame extends Game implements IFrontend {
     super.preInit();
 
     // Init sub classes
-    this.terramGameRules = new TerramGameRules(this.stage);
+    this.terramGameRules = new TerramGameRules(this.common);
 
     // Build an instance of TerramGame
     // Do this last because it calls init()

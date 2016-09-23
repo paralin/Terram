@@ -1,11 +1,11 @@
 import { IFrontendGameRules, EGameOperatingMode } from '@fusebot/goterram';
-import * as PIXI from 'pixi.js/bin/pixi.js';
+import { IGameCommon } from '../../engine/common';
+import { DebugText } from '../ui';
 
 export class TerramGameRules implements IFrontendGameRules {
-  private opModeText: PIXI.Text;
-  private opMode: EGameOperatingMode = EGameOperatingMode.LOCAL;
+  private debugText: DebugText;
 
-  constructor(private stage: PIXI.Container) {}
+  constructor(private common: IGameCommon) {}
 
   public init() {
     // Add the text to the renderer
@@ -13,34 +13,22 @@ export class TerramGameRules implements IFrontendGameRules {
   }
 
   public addOpModeText() {
-    if (this.opModeText) {
+    if (this.debugText) {
       return;
     }
 
-    this.opModeText = new PIXI.Text(this.opModeString, {
-      fontFamily: 'Arial',
-      fontSize: '24px',
-      fill: '#FFFFFF',
-    });
-    this.opModeText.x = 10;
-    this.opModeText.y = 10;
-    this.stage.addChild(this.opModeText);
+    this.debugText = new DebugText(this.common);
+    this.debugText.init();
   }
 
   public setGameOperatingMode(opMode: EGameOperatingMode) {
-    this.opMode = opMode;
-    this.opModeText.text = this.opModeString;
-  }
-
-  get opModeString() {
-    return 'Operating mode: ' + this.opMode;
+    this.debugText.setGameOperatingMode(opMode);
   }
 
   public destroy() {
-    if (this.opModeText) {
-      this.stage.removeChild(this.opModeText);
-      this.opModeText.destroy();
-      this.opModeText = null;
+    if (this.debugText) {
+      this.debugText.destroy();
+      this.debugText = null;
     }
   }
 }

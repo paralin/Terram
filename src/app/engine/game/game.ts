@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js/bin/pixi.js';
+import { IGameCommon } from '../common';
+import { Subject } from 'rxjs/Subject';
 
 /*
  * Game is the basis of a game.
@@ -7,14 +9,20 @@ import * as PIXI from 'pixi.js/bin/pixi.js';
  * class MyGame extends Game
  */
 export class Game {
-  public renderer: PIXI.SystemRenderer;
-  public stage: PIXI.Container;
+  public common: IGameCommon;
 
   private continueAnimating: boolean;
 
-  public initWithRenderer(renderer: PIXI.SystemRenderer) {
-    this.renderer = renderer;
-    this.stage = new PIXI.Container();
+  public initWithRenderer(renderer: PIXI.SystemRenderer, container: HTMLElement) {
+    this.common = {
+      renderer: renderer,
+      stage: new PIXI.Container(),
+      renderSubjects: {
+        preRender: new Subject<void>(),
+        postRender: new Subject<void>(),
+      },
+      container: container,
+    };
     this.preInit();
     this.continueAnimating = true;
     this.animate(true);
@@ -27,22 +35,12 @@ export class Game {
   // Called by go
   public destroy() {
     this.continueAnimating = false;
-    this.stage.destroy(true);
-    this.renderer = null;
+    this.common.stage.destroy(true);
+    this.common = null;
   }
 
   // Called by ts
   public destroyGame() {
-    //
-  }
-
-  // Override in subclass
-  public preRender() {
-    //
-  }
-
-  // Override in subclass
-  public postRender() {
     //
   }
 
@@ -59,8 +57,8 @@ export class Game {
       return;
     }
 
-    this.preRender();
-    this.renderer.render(this.stage);
-    this.postRender();
+    this.common.renderSubjects.preRender.next();
+    this.common.renderer.render(this.common.stage);
+    this.common.renderSubjects.postRender.next();
   }
 }

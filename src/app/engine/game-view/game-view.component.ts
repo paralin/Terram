@@ -65,7 +65,7 @@ export class GameView implements OnDestroy, OnInit {
       return;
     }
 
-    this.game.initWithRenderer(this.renderer);
+    this.game.initWithRenderer(this.renderer, this.el.nativeElement);
   }
 
   private destroyGame() {
