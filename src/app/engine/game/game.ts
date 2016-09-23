@@ -7,7 +7,7 @@ import * as PIXI from 'pixi.js/bin/pixi.js';
  * class MyGame extends Game
  */
 export class Game {
-  private renderer: PIXI.SystemRenderer;
+  public renderer: PIXI.SystemRenderer;
 
   public initWithRenderer(renderer: PIXI.SystemRenderer) {
     this.renderer = renderer;
@@ -18,7 +18,13 @@ export class Game {
     // do nothing, override in subclass
   }
 
+  // Called by go
   public destroy() {
     this.renderer = null;
+  }
+
+  // Called by ts
+  public destroyGame() {
+    //
   }
 }

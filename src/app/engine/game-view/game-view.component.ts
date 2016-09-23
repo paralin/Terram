@@ -73,6 +73,6 @@ export class GameView implements OnDestroy, OnInit {
       return;
     }
 
-    this.game.destroy();
+    this.game.destroyGame();
   }
 }
