@@ -19,7 +19,7 @@ export class TerramGameRules implements IFrontendGameRules {
 
     this.opModeText = new PIXI.Text(this.opModeString, {
       fontFamily: 'Arial',
-      fontSize: '12px',
+      fontSize: '24px',
       fill: '#FFFFFF',
     });
     this.opModeText.x = 10;
