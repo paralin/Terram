@@ -12,10 +12,19 @@ Basic idea:
 Developing
 ==========
 
+First, make sure you have the following prereqs:
+
+ - Have a [NpmJS](http://npmjs.com) account.
+ - Sign into npm with `npm login`
+ - Set up your [GitHub SSH keys](https://help.github.com/articles/generating-an-ssh-key/).
+
 To get started:
 
  - `npm install`
  - `npm run setup:dev`
+
+Then, to run the webserver:
+
  - `npm run server:dev:hmr`
 
 The `npm run setup:dev` script will get you up to speed with the Go dependencies. It will also link in your development version of GoTerram.
