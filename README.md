@@ -20,4 +20,4 @@ To get started:
 
 The `npm run setup:dev` script will get you up to speed with the Go dependencies. It will also link in your development version of GoTerram.
 
-When editing GoTerram, you can re-build the JavaScript by doing `./scripts/build_js.bash`. There is a shortcut to do this, you can type `npm run build:go` from this repository.
+When editing GoTerram, you can re-build the JavaScript by doing `./scripts/build_js.bash`. There is a shortcut to do this, you can type `npm run build:go` from this repository. Also make sure you have an account with npmjs.com and login from the command line.
