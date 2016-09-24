@@ -44,6 +44,7 @@ import * as _ from 'lodash'
  */
 /// <reference path="../node_modules/@fusebot/goterram/js/goterram.d.ts" />
 /// <reference path="../node_modules/pixi-typescript/pixi.js.d.ts" />
+/// <reference path="../node_modules/@types/stats/index.d.ts" />
 
 // support NodeJS modules without type definitions
 declare module '*';
