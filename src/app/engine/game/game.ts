@@ -21,6 +21,7 @@ export class Game {
         postRender: new Subject<void>(),
       },
       container: container,
+      loader: new PIXI.loaders.Loader('assets/'),
     };
     this.preInit();
     this.continueAnimating = true;

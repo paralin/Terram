@@ -1,30 +1,38 @@
 import { IFrontendEntity, IFrontendComponent } from '@fusebot/goterram';
 import { IGameCommon } from '../../../engine/common';
-
-export interface IPosition {
-  X: number;
-  Y: number;
-}
-
-export interface IScale {
-  XScale: number;
-  YScale: number;
-}
-
-export interface ITransformData {
-  Position: IPosition;
-  Scale: IScale;
-}
+import { ITransformData, ITransformSubscriber } from '../common';
 
 export class TransformComponent implements IFrontendComponent {
+  public transform: ITransformData;
+  private initDone: boolean = false;
+
   constructor(private ent: IFrontendEntity,
               private common: IGameCommon) {}
 
-  public setPosition(pos: ITransformData[]) {
-    console.log(pos[0]);
+  public setPosition(posa: ITransformData[]) {
+    let pos = posa[0];
+    this.transform = pos;
+    if (!this.initDone) {
+      return;
+    }
+    for (let componentId in this.ent.components) {
+      if (!this.ent.components.hasOwnProperty(componentId)) {
+        continue;
+      }
+      let component: ITransformSubscriber = this.ent.components[componentId];
+      if (component === this) {
+        continue;
+      }
+      if (component.setTransform) {
+        component.setTransform(pos);
+      }
+    }
   }
 
   public initLate() {
-    console.log('init late');
+    this.initDone = true;
+    if (this.transform) {
+      this.setPosition([this.transform]);
+    }
   }
 }

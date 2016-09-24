@@ -11,4 +11,5 @@ export interface IGameCommon {
   stage: PIXI.Container;
   renderSubjects: IGameRenderSubjects;
   container: HTMLElement;
+  loader: PIXI.loaders.Loader;
 }
