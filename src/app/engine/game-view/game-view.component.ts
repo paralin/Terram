@@ -31,8 +31,11 @@ export class GameView implements OnDestroy, OnInit {
 
   private initEngine() {
     let { width, height } = this.viewSize;
-    let renderer = PIXI.autoDetectRenderer(width, height);
-    this.el.nativeElement.appendChild(renderer.view);
+    let renderer = PIXI.autoDetectRenderer(width, height, {
+      view: this.el.nativeElement.querySelector('canvas'),
+      transparent: false,
+      antialias: false,
+    });
     this.renderer = renderer;
   }
 
