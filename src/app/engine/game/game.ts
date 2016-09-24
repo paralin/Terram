@@ -10,7 +10,6 @@ import { Subject } from 'rxjs/Subject';
  */
 export class Game {
   public common: IGameCommon;
-
   private continueAnimating: boolean;
 
   public initWithRenderer(renderer: PIXI.SystemRenderer, container: HTMLElement) {
@@ -26,9 +25,14 @@ export class Game {
     this.preInit();
     this.continueAnimating = true;
     this.animate(true);
+    this.postInit();
   }
 
   public preInit() {
+    // do nothing, override in subclass
+  }
+
+  public postInit() {
     // do nothing, override in subclass
   }
 

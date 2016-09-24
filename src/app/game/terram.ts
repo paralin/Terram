@@ -1,6 +1,7 @@
 import { Game } from '../engine/game';
 import {
   IFrontend,
+  IFrontendEntity,
   IFrontendGameRules,
   INetEntity,
   TerramBuilder,
@@ -8,6 +9,7 @@ import {
 import {
   TerramGameRules,
 } from './game-rules';
+import { TerramEntity } from './entity';
 // import { TERRAM_COMPONENTS } from './components';
 
 export class TerramGame extends Game implements IFrontend {
@@ -28,13 +30,19 @@ export class TerramGame extends Game implements IFrontend {
     this.terramGame = TerramBuilder.BuildTerramGame(this);
   }
 
+  public postInit() {
+    super.postInit();
+
+    this.terramGame.Start();
+  }
+
   public init(): IFrontendGameRules {
     return this.terramGameRules;
   }
 
   // Called from Go
-  public addEntity(entity: INetEntity): void {
-    // console.log('Entity ' + entity.id + ' added.');
+  public addEntity(entity: INetEntity): IFrontendEntity {
+    return new TerramEntity(this.common, entity);
   }
 
   // Called from Go
