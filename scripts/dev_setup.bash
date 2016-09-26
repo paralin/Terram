@@ -75,9 +75,7 @@ if ! ./scripts/build_js.bash; then
   echo "Unable to build js, for some reason."
   exit 1
 fi
-pushd js
 npm link
-popd
 popd
 
 echo "Linking in goterram..."
