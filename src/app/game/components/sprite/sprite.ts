@@ -1,15 +1,18 @@
 import { IFrontendEntity, IFrontendComponent } from '@fusebot/goterram';
 import { IGameCommon } from '../../../engine/common';
-import { ITransformData, ITransformSubscriber } from '../common';
+import { ITransformData } from '../common';
+import { TransformComponent } from '../transform';
+import { ISubscription } from 'rxjs/Subscription';
 import * as PIXI from 'pixi.js/bin/pixi.js';
 
 export interface ISpriteData {
 }
 
-export class SpriteComponent implements IFrontendComponent, ITransformSubscriber {
+export class SpriteComponent implements IFrontendComponent {
   public data: ISpriteData;
   public sprite: PIXI.Sprite;
-  private transform: ITransformData;
+  private transformSub: ISubscription;
+  private transformComponent: TransformComponent;
 
   constructor(private ent: IFrontendEntity,
               private common: IGameCommon) {}
@@ -21,15 +24,15 @@ export class SpriteComponent implements IFrontendComponent, ITransformSubscriber
   public initLate() {
     this.sprite = new PIXI.Sprite(PIXI.Texture.fromImage('assets/img/ball.png'));
     this.common.stage.addChild(this.sprite);
-    if (this.transform) {
-      this.setTransform(this.transform);
-    }
+
+    let tc: TransformComponent = <TransformComponent>this.ent.getComponent(1);
+    this.transformComponent = tc;
+    this.transformSub = tc.transform.subscribe((data) => {
+      this.setTransform(data);
+    });
   }
 
   public setTransform(data: ITransformData) {
-    console.log(data);
-    this.transform = data;
-
     if (!this.sprite) {
       return;
     }
