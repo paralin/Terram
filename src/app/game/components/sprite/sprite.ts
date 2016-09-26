@@ -11,6 +11,7 @@ export interface ISpriteData {
 export class SpriteComponent implements IFrontendComponent {
   public data: ISpriteData;
   public sprite: PIXI.Sprite;
+
   private transformSub: ISubscription;
   private transformComponent: TransformComponent;
 
@@ -45,6 +46,9 @@ export class SpriteComponent implements IFrontendComponent {
   }
 
   public destroy() {
+    if (this.transformSub) {
+      this.transformSub.unsubscribe();
+    }
     this.common.stage.removeChild(this.sprite);
     this.sprite = null;
   }
