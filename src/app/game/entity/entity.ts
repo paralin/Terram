@@ -15,7 +15,6 @@ export class TerramEntity implements IFrontendEntity {
   }
 
   public addComponent(id: number): IFrontendComponent {
-    console.log('adding component ' + id);
     let cf = TERRAM_COMPONENTS[id];
     if (!cf) {
       return;

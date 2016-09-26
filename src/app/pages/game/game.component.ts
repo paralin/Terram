@@ -3,8 +3,8 @@ import { TerramGame } from '../../game/terram';
 
 @Component({
   selector: 'game-page',
-  styleUrls: [ './game.style.css' ],
-  templateUrl: './game.template.html'
+  styles: [ require('./game.style.css') ],
+  template: require('./game.template.html'),
 })
 export class GamePage implements OnDestroy, OnInit {
   private game: TerramGame;

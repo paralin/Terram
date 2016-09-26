@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const helpers = require('./helpers');
 const path = require('path');
+const resolveGoPaths = require('./resolve.go');
 
 /*
  * Webpack Plugins
@@ -30,6 +31,10 @@ const METADATA = {
  */
 module.exports = function(options) {
   isProd = options.env === 'production';
+  var fallbackResolveDirs = [];
+  resolveGoPaths(fallbackResolveDirs);
+
+  // Resolve go code if we have it
   return {
 
     /*
@@ -77,11 +82,9 @@ module.exports = function(options) {
       extensions: ['', '.ts', '.js', '.json'],
 
       // Make sure root is src
-      root: helpers.root('src'),
+      modules: [helpers.root('src'), 'node_modules'],
 
-      // remove other default values
-      modulesDirectories: ['node_modules'],
-
+      fallback: fallbackResolveDirs,
     },
 
     /*
@@ -90,6 +93,8 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#module
      */
     module: {
+
+      // noParse: [/\@fusebot\/goterram/],
 
       /*
        * An array of applied pre and post loaders.
@@ -107,7 +112,6 @@ module.exports = function(options) {
           },
           include: [helpers.root('src')]
         },
-
       ],
 
       /*
@@ -208,7 +212,7 @@ module.exports = function(options) {
       // https://github.com/AngularClass/angular2-webpack-starter/issues/993
       new ContextReplacementPlugin(
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-        __dirname
+      __dirname
       ),
 
       /*

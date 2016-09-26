@@ -55,6 +55,7 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#module
      */
     module: {
+      noParse: [/\@fusebot\/goterram/],
 
       /**
        * An array of applied pre and post loaders.
@@ -86,7 +87,8 @@ module.exports = function(options) {
           exclude: [
           // these packages have problems with their sourcemaps
           helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular')
+          helpers.root('node_modules/@angular'),
+          helpers.root('node_modules/pixi.js')
         ]}
 
       ],
@@ -110,6 +112,8 @@ module.exports = function(options) {
           test: /\.ts$/,
           loader: 'awesome-typescript-loader',
           query: {
+            sourceMap: false,
+            inlineSourceMap: true,
             compilerOptions: {
 
               // Remove TypeScript helpers to be injected
