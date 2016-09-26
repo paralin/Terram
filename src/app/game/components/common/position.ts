@@ -12,7 +12,3 @@ export interface ITransformData {
   Position: IPosition;
   Scale: IScale;
 }
-
-export interface ITransformSubscriber {
-  setTransform?(data: ITransformData);
-}
