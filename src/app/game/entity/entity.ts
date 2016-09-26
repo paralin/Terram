@@ -23,4 +23,8 @@ export class TerramEntity implements IFrontendEntity {
     this.components[id] = ent;
     return ent;
   }
+
+  public getComponent(id: number): IFrontendComponent {
+    return this.components[id];
+  }
 }
