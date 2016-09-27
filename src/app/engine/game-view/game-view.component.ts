@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnDestroy, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Input,
+  NgZone,
+} from '@angular/core';
 import * as PIXI from 'pixi.js/bin/pixi.js';
 
 import { Game } from '../game';
@@ -15,7 +22,9 @@ export class GameView implements OnDestroy, OnInit {
   @Input('game') public game: Game;
   private renderer: PIXI.SystemRenderer;
 
-  constructor(private el: ElementRef, private log: Logger) {}
+  constructor(private el: ElementRef,
+              private log: Logger,
+              private zone: NgZone) {}
 
   public ngOnInit() {
     this.initEngine();
@@ -68,7 +77,9 @@ export class GameView implements OnDestroy, OnInit {
       return;
     }
 
-    this.game.initWithRenderer(this.renderer, this.el.nativeElement);
+    this.zone.runOutsideAngular(() => {
+      this.game.initWithRenderer(this.renderer, this.el.nativeElement);
+    });
   }
 
   private destroyGame() {
