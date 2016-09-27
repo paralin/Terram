@@ -45,6 +45,7 @@ node {
       stage ("test") {
         sh '''
           #!/bin/bash
+          set -e
           source ./scripts/jenkins_env.bash
           npm run ci
         '''
@@ -53,6 +54,7 @@ node {
       stage ("e2e") {
         sh '''
           #!/bin/bash
+          set -e
           source ./scripts/jenkins_env.bash
           ./scripts/run_e2e.bash
         '''
