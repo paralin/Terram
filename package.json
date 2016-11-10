@@ -122,7 +122,7 @@
     "karma-webpack": "1.8.0",
     "parse5": "^2.2.1",
     "pixi-typescript": "git://github.com/paralin/pixi-typescript.git#af4ea6be5bb6761ced80eea27ac66b122c9e5cd6",
-    "protractor": "^4.0.9",
+    "protractor": "^4.0.11",
     "raw-loader": "0.5.1",
     "rimraf": "^2.5.2",
     "source-map-loader": "^0.1.5",
