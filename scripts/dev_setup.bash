@@ -1,5 +1,5 @@
 #!/bin/bash
-WIKI_ROOT=https://github.com/FuseRobotics/Terram/wiki
+WIKI_ROOT=https://github.com/paralin/Terram/wiki
 
 echo "Checking your npm..."
 if ! npm -v; then
@@ -29,7 +29,7 @@ if [ ! -d $GOTERRAM_PATH ]; then
   echo "You do not have goterram, attempting to clone it..."
   mkdir -p $REPOS_PATH
   pushd $REPOS_PATH
-  if ! git clone git@github.com:FuseRobotics/goterram.git; then
+  if ! git clone git@github.com:paralin/goterram.git; then
     echo "Unable to clone, you may need to set up your SSH keys."
     exit 1
   fi
@@ -40,7 +40,7 @@ if [ ! -d $GOGAME_PATH ]; then
   echo "You do not have gogame, attempting to clone it..."
   mkdir -p $REPOS_PATH
   pushd $REPOS_PATH
-  if ! git clone git@github.com:FuseRobotics/gogame.git; then
+  if ! git clone git@github.com:paralin/gogame.git; then
     echo "Unable to clone, you may need to set up your SSH keys."
     exit 1
   fi
