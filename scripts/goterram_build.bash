@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Checking if you have goterram..."
-REPOS_PATH=${GOPATH}/src/github.com/fuserobotics
+REPOS_PATH=${GOPATH}/src/github.com/paralin
 GOTERRAM_PATH=${REPOS_PATH}/goterram
 
 if [ ! -d $GOTERRAM_PATH ]; then

@@ -147,7 +147,7 @@
     "url": "https://github.com/FuseRobotics/terram.git"
   },
   "bugs": {
-    "url": "https://github.com/fuserobotics/terram/issues"
+    "url": "https://github.com/paralin/terram/issues"
   },
   "engines": {
     "node": ">= 4.2.1",

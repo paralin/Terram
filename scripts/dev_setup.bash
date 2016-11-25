@@ -21,7 +21,7 @@ if [ -z "$GOPATH" ]; then
 fi
 
 echo "Checking if you have goterram..."
-REPOS_PATH=${GOPATH}/src/github.com/fuserobotics
+REPOS_PATH=${GOPATH}/src/github.com/paralin
 GOGAME_PATH=${REPOS_PATH}/gogame
 GOTERRAM_PATH=${REPOS_PATH}/goterram
 
