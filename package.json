@@ -144,7 +144,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FuseRobotics/terram.git"
+    "url": "https://github.com/paralin/terram.git"
   },
   "bugs": {
     "url": "https://github.com/paralin/terram/issues"
