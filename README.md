@@ -1,4 +1,4 @@
-# Terram: A MMO Terraria-esque web game. [![Build Status](https://travis-ci.com/paralin/Terram.svg?token=pDSxxzeqkTaa5iGGTLb3&branch=master)](https://travis-ci.com/paralin/Terram)
+# Terram: A MMO Terraria-esque web game. [![Build Status](https://travis-ci.org/paralin/Terram.svg?branch=master)](https://travis-ci.org/paralin/Terram)
 
 The Terram web game browser app.
 
